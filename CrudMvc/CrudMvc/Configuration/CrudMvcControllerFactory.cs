@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Routing;
 using CrudMvc.Controller;
-using System.Linq;
 
 namespace CrudMvc.Configuration {
     public class CrudMvcControllerFactory : DefaultControllerFactory {
         private readonly Assembly _entityAssembly;
-        public CrudMvcControllerFactory(Assembly entityAssembly) {
-            _entityAssembly = entityAssembly;
+        public CrudMvcControllerFactory()
+        {
+            _entityAssembly = CrudMvcConfigurationManager.EntityAssembly;
         }
 
         protected override Type GetControllerType(RequestContext requestContext, string controllerName) {
