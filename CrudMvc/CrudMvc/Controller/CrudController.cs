@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using CrudMvc.Repository;
+using CrudMvc.View;
 
 namespace CrudMvc.Controller {
     public class CrudController<TEntity> : System.Web.Mvc.Controller where TEntity : class {
@@ -12,7 +13,7 @@ namespace CrudMvc.Controller {
         public ActionResult Index() {
             var models = Repository.GetAll();
 
-            return View(models);
+            return View(new IndexView(), models);
         }
 
         public ActionResult Create() {
