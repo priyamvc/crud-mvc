@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Reflection;
 
@@ -7,7 +8,7 @@ namespace CrudMvc.Configuration
     public static class CrudMvcConfigurationManager
     {
         private static readonly CrudMvcSection Section =
-            (CrudMvcSection)ConfigurationManager.GetSection("crudMvcGroup/crudMvc");
+            (CrudMvcSection)ConfigurationManager.GetSection("crudMvc");
 
         public static Assembly EntityAssembly
         {
@@ -18,5 +19,10 @@ namespace CrudMvc.Configuration
         {
             get { return Type.GetType(Section.DbContextTypeName); }
         }
+
+        public static IEnumerable<string> ExcludedEntities
+        {
+            get { return Section.ExcludedEntities.Split(','); }
+        } 
     }
 }
